@@ -21,6 +21,8 @@ class BaseViewController: UIViewController,CLLocationManagerDelegate{
     let TO_DETAIL = "toDetail"                     // 詳細画面遷移Key
     let TO_DETAIL_BACK = "toDetailBack"            // 詳細画面に戻る遷移Key
     let LIST_ITEM = "item"                         // リスト項目
+    let PLACEHOLDER_NAME = "name"                  // プレースホルダー(名前)
+    let PLACEHOLDER_REMARK = "remark"              // プレースホルダー(ひとこと)
     
     /** メンバ変数 */
     var locationMgr: CLLocationManager!
@@ -75,6 +77,11 @@ class BaseViewController: UIViewController,CLLocationManagerDelegate{
         mapView.showsUserLocation = true
         // 現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される）
         mapView.userTrackingMode = .follow
+        
+        // 住所にピンを立てる
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2DMake(latitude,longitude)
+        mapView.addAnnotation(annotation)
     }
 
     /** 地図の中心位置の更新して更新した住所を取得 */
@@ -100,6 +107,11 @@ class BaseViewController: UIViewController,CLLocationManagerDelegate{
             lblAddress.numberOfLines = 0                               //折り返し
             lblAddress.lineBreakMode = NSLineBreakMode.byCharWrapping  //文字で改行
             lblAddress.sizeToFit()                                     //サイズを文字列に合わせる
+            
+            // 住所にピンを立てる
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2DMake(mapView.region.center.latitude,mapView.region.center.longitude)
+            mapView.addAnnotation(annotation)
         }
     }
     

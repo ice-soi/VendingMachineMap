@@ -80,9 +80,22 @@ class InputViewController: BaseViewController{
 
     /** UIの表示内容をを初期化する */
     private func initUI(){
-        txtTitle.text = finderInfo.title        // タイトル
-        txtRemark.text = finderInfo.remark      // 備考
-        lblAddress.text = SEARCHING_MSG         // 住所の初期メッセージ
+        // タイトル
+        txtTitle.text = finderInfo.title
+        txtTitle.placeholder = PLACEHOLDER_NAME
+        txtTitle.layer.cornerRadius = 15
+        txtTitle.layer.borderColor = UIColor.lightGray.cgColor
+        txtTitle.layer.borderWidth  = 1
+        txtTitle.layer.masksToBounds = true
+        // 備考
+        txtRemark.text = finderInfo.remark
+        txtRemark.placeholder = PLACEHOLDER_REMARK
+        txtRemark.layer.cornerRadius = 15
+        txtRemark.layer.borderColor = UIColor.lightGray.cgColor
+        txtRemark.layer.borderWidth  = 1
+        txtRemark.layer.masksToBounds = true
+        // 住所の初期メッセージ
+        lblAddress.text = SEARCHING_MSG
     }
     
     /** デリゲートメソッド 位置情報取得・更新のたびに呼ぶ */
@@ -94,5 +107,3 @@ class InputViewController: BaseViewController{
     override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
     }
 }
-
-
